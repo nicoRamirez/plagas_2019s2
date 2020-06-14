@@ -1,0 +1,33 @@
+import elementos.*
+import plagas.*
+test "testPlagas" {
+	const cucarachas1 = new PlagaCucarachas()
+	cucarachas1.poblacion(40)
+	cucarachas1.pesoPromedio(8)
+	const hogar1 = new Hogar()
+	hogar1.confort(30)
+	cucarachas1.efectoAtaqueA(hogar1)
+	assert.that(cucarachas1.trasmiteEnfermedad())
+	assert.equals(22,cucarachas1.nivelDanio())
+	assert.equals(44,cucarachas1.poblacion())
+	assert.equals(10,cucarachas1.pesoPromedio())
+	
+	const pulgas1 = new PlagaPulgas()
+	pulgas1.poblacion(8)
+	assert.notThat(pulgas1.trasmiteEnfermedad())
+	assert.equals(16,pulgas1.nivelDanio())
+	pulgas1.efectoAtaqueA(hogar1)
+	assert.equals(8.8,pulgas1.poblacion())
+	
+	const garrapatas1 = new PlagaGarrapatas()
+	garrapatas1.poblacion(15)
+	garrapatas1.efectoAtaqueA(hogar1)
+	assert.equals(18,garrapatas1.poblacion())
+	
+	const mosquitos1 = new PlagaMosquitos()
+	mosquitos1.poblacion(124)
+	assert.notThat(mosquitos1.trasmiteEnfermedad())
+	assert.equals(124,mosquitos1.nivelDanio())
+	mosquitos1.efectoAtaqueA(hogar1)
+	assert.equals(136.4,mosquitos1.poblacion())
+}

@@ -1,0 +1,32 @@
+import elementos.*
+import plagas.*
+test "testElementos" {
+	const hogar1 = new Hogar()
+	hogar1.confort(30)
+	const cucaracha1 = new PlagaCucarachas()
+	cucaracha1.poblacion(40)
+	hogar1.esAtacadaPor(cucaracha1)
+	assert.notThat(hogar1.esBueno())
+	
+	const huerta1 = new Huerta()
+	huerta1.capacidadProduc(40)
+	nivel.cant(15)
+	assert.that(huerta1.esBueno())
+	cucaracha1.pesoPromedio(11)
+	huerta1.esAtacadaPor(cucaracha1)
+	assert.that(huerta1.esBueno())
+	
+	const mascota1 = new Mascota()
+	mascota1.nivelSalud(500)
+	mascota1.esAtacadaPor(cucaracha1)
+	assert.that(mascota1.esBueno())
+	assert.equals(480,mascota1.nivelSalud())
+	
+	const barrio1 = new Barrio()
+	barrio1.elementos(mascota1)
+	barrio1.elementos(hogar1)
+	barrio1.elementos(huerta1)
+	assert.that(barrio1.esCopado())
+	assert.equals(1,barrio1.elemenNoBuenos())
+	assert.equals(2,barrio1.elemenBuenos())
+}
